@@ -6,9 +6,7 @@
   <h2>All of our stylists are skilled in a variety of services.</h2>
   <p>AmyRose Salons hires and trains osme of the most skilled stylists in the city. We're conviently located in every nueghborhood. Book your appointment today. Walk-ins are always welcome!</p>
 </div>
-@{
-  Layout="Shared/_Layout.cshtml";
-}
+
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
   @foreach (var stylist in @Model["stylists"])
@@ -45,4 +43,35 @@
         </h4>
       </div>
     }
+/*
+    @foreach (var client in @Model["clients"])
+    {
+      if(client.GetStylistId() == stylist.GetId())
+      {
+        if(client.GetStylistId() == 1)
+        {
+          <div class="panel-body rest-@stylist.GetId()" style="background-color:#9BBCCE !important; border-bottom: 1px solid black">
+            <a href="client/@client.GetId()">@client.GetName()</a>
+          </div>
+        }
+        else if (client.GetStylistId() == 2)
+        {
+          <div class="panel-body rest-@stylist.GetId()" style="background-color:#A0D7BA !important; border-bottom: 1px solid black">
+            <a href="client/@client.GetId()">@client.GetName()</a>
+          </div>
+        }
+        else if (client.GetStylistId() == 3)
+        {
+          <div class="panel-body rest-@stylist.GetId()" style="background-color:#9BBCCE !important; border-bottom: 1px solid black">
+            <a href="client/@client.GetId()">@client.GetName()</a>
+          </div>
+        }
+        else if (client.GetStylistId() == 4)
+        {
+          <div class="panel-body rest-@stylist.GetId()" style="background-color:#A0D7BA !important; border-bottom: 1px solid black">
+            <a href="client/@client.GetId()">@client.GetName()</a>
+          </div>
+        }
+      }
+    }*/
   }

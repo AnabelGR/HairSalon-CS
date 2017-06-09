@@ -1,0 +1,44 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h1>Emploee Client Info Form</h1>
+
+@if(!@Model.CheckPassword())
+{
+  <div class="noaccess">
+    <h1>Check your login information again.</h1>
+  </div>
+}
+else
+{
+  <div class="panel clientForm">
+    <div class="panel clientForm">
+      <form class="form-horizontal" id="client" action="/" method="post">
+        <div class="form-group">
+          <label class="col-md-4" for="Name">Your Name:</label>
+          <div class="col-md-8">
+          <input class="form-control" name="name" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4" for="stylist">Cuisine:</label>
+          <div class="col-md-4">
+            <select class="form-control" name="stylist_id">
+             <option name="stylist_id" value="1">AmyRose</option>
+             <option name="stylist_id" value="2">Levi</option>
+             <option name="stylist_id" value="3">Morgan</option>
+             <option name="stylist_id" value="4">James</option>
+             <option name="stylist_id" value="5">Joe V</option>
+             <option name="stylist_id" value="6">Marissa</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-success" type="submit" onclick="myFunction()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+<a href="/" class="btn">Return Home</a>

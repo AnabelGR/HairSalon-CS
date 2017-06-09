@@ -82,9 +82,9 @@ namespace HairSalon.Objects
       {
         conn.Close();
       }
-
       return allClients;
     }
+    
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
