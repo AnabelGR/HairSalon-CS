@@ -10,8 +10,6 @@ This web application will allow a salon to book clients with a stylist.
 
 |Behavior| Input (User Action/Selection)| Input2  (User Action/Selection)|Description|
 |---|:---:|:---:|:---:|
-|Link a stylist to a client. |stylist: AmyRose|client: Amber|A one to one database relationship. |
-|Link a stylist to several clients. |stylist: AmyRose|clients: Amber, Anthony|A one to many database relationship. |
 |Add a client. |Add client: Amber|Add client: Amber to stylist AmyRose |An add function. |
 |Add a stylist. |Add stylist: AmyRose|Add stylist: AmyRose to salon|An add function. |
 |Delete a client. |Delete client: Amber|remove client: Amber from stylist AmyRose|A delete function. |
@@ -19,6 +17,8 @@ This web application will allow a salon to book clients with a stylist.
 |Update a client's name. |Find client: Amber|update client to: Anne|An update function. |
 |Find a client. |Find client: Amber|find client: Amber in database|A find function. |
 |Find a stylist. |Find stylist: AmyRose|find stylist: AmyRose in database|A find function. |
+|Link a stylist to a client. |stylist: AmyRose|client: Amber|A one to one database relationship. |
+|Link a stylist to several clients. |stylist: AmyRose|clients: Amber, Anthony|A one to many database relationship. |
 |Link a stylist to a specialty. |stylist: AmyRose|specialty: color|A one to one database relationship. |
 |Book a client with a stylist at a salon. |client: Amber|stylist: AmyRose|A many to many database relationship.|
 

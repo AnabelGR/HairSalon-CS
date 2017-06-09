@@ -100,5 +100,15 @@ namespace HairSalon
 
       Assert.Equal(sampleList, testList);
     }
+    [Fact]
+    public void TestClients_Update_UpdatesClientName()
+    {
+      Client testClient = new Client("Anthony");
+      testClient.Save();
+
+      testClient.Update("Amber");
+
+      Assert.Equal("Amber", testClient.GetName());
+    }
   }
 }
