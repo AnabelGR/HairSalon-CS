@@ -90,8 +90,8 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlCommand cmd = new SqlCommand("INSERT INTO clients (name) OUTPUT INSERTED.id VALUES (@ClientName);", conn);
-      SqlParameter nameParam = new SqlParameter("@ClientName", this.GetName());
-      cmd.Parameters.Add(nameParam);
+      SqlParameter nameParameter = new SqlParameter("@ClientName", this.GetName());
+      cmd.Parameters.Add(nameParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
@@ -113,8 +113,8 @@ namespace HairSalon.Objects
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @ClientId;", conn);
-      SqlParameter idParam = new SqlParameter("@ClientId", idToFind);
-      cmd.Parameters.Add(idParam);
+      SqlParameter idParameter= new SqlParameter("@ClientId", idToFind);
+      cmd.Parameters.Add(idParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
       int id =  0;
       string name = null;
@@ -141,8 +141,8 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE name = @SearchName;", conn);
-      SqlParameter searchParam = new SqlParameter("@SearchName", nameToSearch);
-      cmd.Parameters.Add(searchParam);
+      SqlParameter searchParameter = new SqlParameter("@SearchName", nameToSearch);
+      cmd.Parameters.Add(searchParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       List<Client> matches = new List<Client>{};
@@ -169,8 +169,8 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
-      SqlParameter idParam = new SqlParameter("@ClientId", this.GetId());
-      cmd.Parameters.Add(idParam);
+      SqlParameter idParameter = new SqlParameter("@ClientId", this.GetId());
+      cmd.Parameters.Add(idParameter);
       cmd.ExecuteNonQuery();
       if(conn != null)
       {
@@ -182,10 +182,10 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @ClientName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
-      SqlParameter nameParam = new SqlParameter("@ClientName", newName);
-      SqlParameter idParam = new SqlParameter("@ClientId", this.GetId());
-      cmd.Parameters.Add(nameParam);
-      cmd.Parameters.Add(idParam);
+      SqlParameter nameParameter = new SqlParameter("@ClientName", newName);
+      SqlParameter idParameter = new SqlParameter("@ClientId", this.GetId());
+      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(idParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())

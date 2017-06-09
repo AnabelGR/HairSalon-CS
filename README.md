@@ -8,22 +8,24 @@
 
 This web application will allow a salon to book clients with a stylist.
 
-|Behavior| Input (User Action/Selection)| Input2  (User Action/Selection)|Description|
-|---|:---:|:---:|:---:|
-|Add a client. |Add client: Amber|Add client: Amber to stylist AmyRose |An add function. |
-|Add a stylist. |Add stylist: AmyRose|Add stylist: AmyRose to salon|An add function. |
-|Find a client. |Find client: Amber|find client: Amber in database|A find function. |
-|Find a stylist. |Find stylist: AmyRose|find stylist: AmyRose in database|A find function. |
-|Search for a client. |Search client: Amber|locate client: Amber in database|A search function. |
-|Search for a stylist. |Search stylist: AmyRose|locate stylist: AmyRose in database|A search function. |
-|Delete a client. |Delete client: Amber|remove client: Amber from stylist AmyRose|A delete function. |
-|Delete a stylist. |Delete stylist: AmyRose|remove stylist: AmyRose from salon database|A delete function. |
-|Update a client's name. |Find client: Amber|update client to: Anne|An update function. |
-|Update a stylist's name. |Find stylist: Amber|update stylist to: Levi|An update function. |
-|Link a stylist to a client. |stylist: AmyRose|client: Amber|A one to one database relationship. |
-|Link a stylist to several clients. |stylist: AmyRose|clients: Amber, Anthony|A one to many database relationship. |
-|Link a stylist to a specialty. |stylist: AmyRose|specialty: color|A one to one database relationship. |
-|Book a client with a stylist at a salon. |client: Amber|stylist: AmyRose|A many to many database relationship.|
+|Behavior| Input (User Action/Selection) |Description|
+|---|:---:|:---:|
+|Add a client. |Add client: Amber|An add function. |
+|Find a client. |Find client: Amber|A find function. |
+|Search for a client. |Search client: Amber|A search function. |
+|Delete a client. |Delete client: Amber|A delete function. |
+|Update a client's name. |Find client: Amber|An update function. |
+|Add a stylist. |Add stylist: AmyRose|An add function. |
+|Find a stylist. |Find stylist: AmyRose|A find function. |
+|Search for a stylist. |Search stylist: AmyRose|A search function. |
+|Delete a stylist. |Delete stylist: AmyRose|A delete function. |
+|Update a stylist's name. |Find stylist: AmyRose, update to Levi|An update function. |
+|View all stylists. |stylists: AmyRose, Levi, Morgan|View the full list of stylists in the database. |
+|View a stylist's details, clients. |stylist: AmyRose, location: Pearl, specialty: color |View the full list of stylists in the database. |
+|Link a stylist to a client. |stylist: AmyRose, client: Amber|A one to one database relationship. |
+|Link a stylist to several clients. |stylist: AmyRose, clients: Amber, Anthony|A one to many database relationship. |
+|Link a stylist to a specialty. |stylist: AmyRose, specialty: color|A one to one database relationship. |
+|Book a client with a stylist at a salon. |client: Amber, stylist: AmyRose|A many to many database relationship.|
 
 ## Setup/Installation Requirements
 
