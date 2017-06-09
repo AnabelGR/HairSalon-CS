@@ -36,8 +36,8 @@ namespace HairSalon
     public void TestStylists_Equal_ReturnEqualValues()
     {
       //Arrange
-      Stylist newStylist = new Stylist("AmyRose", "Pearl", 3, 2);
-      Stylist testStylist = new Stylist("AmyRose", "Pearl", 3, 2);
+      Stylist newStylist = new Stylist("AmyRose", "Pearl", 3);
+      Stylist testStylist = new Stylist("AmyRose", "Pearl", 3);
 
       //Act, Assert
       Assert.Equal(newStylist, testStylist);
@@ -47,68 +47,69 @@ namespace HairSalon
     public void TestStylists_Save_SavesStylistToDatabase()
     {
       //arrange
-      Stylist newStylist = new Stylist("AmyRose", "Pearl", 3, 2);
-      newStylist.Save();
+      Stylist testStylist = new Stylist("AmyRose", "Pearl", 3, 2);
 
       //Act
-      Stylist savedStylist = Stylist.GetAll()[0];
-
-      //assert
-      Assert.Equal(newStylist, savedStylist);
-    }
-
-    [Fact]
-    public void TestStylists_Find_FindsStylistInDatabase()
-    {
-      //arrange
-      Stylist newStylist = new Stylist("AmyRose", "Pearl", 3, 2);
-      newStylist.Save();
-
-      //Act
-      Stylist foundStylist = Stylist.Find(newStylist.GetId());
-
-      //assert
-      Assert.Equal(newStylist, foundStylist);
-    }
-    [Fact]
-    public void TestStylist_SearchByName_ReturnsMatches()
-    {
-      Stylist Stylist1 = new Stylist("Ann", "Pearl", 3, 2);
-      Stylist1.Save();
-      Stylist Stylist2 = new Stylist("Anna", "Pearl", 3, 2);
-      Stylist2.Save();
-      Stylist Stylist3 = new Stylist("ann", "Pearl", 3, 2);
-      Stylist3.Save();
-
-      List<Stylist> testList = new List<Stylist>{Stylist1, Stylist3};
-      List<Stylist> testmatches = Stylist.SearchByName("Ann");
-
-      Assert.Equal(testList, testmatches);
-    }
-    [Fact]
-    public void TestStylistDelete_DeletesSingleStylist()
-    {
-      Stylist newStylist1 = new Stylist("AmyRose", "Pearl", 3, 2);
-      newStylist1.Save();
-      Stylist newStylist2 = new Stylist("Anna", "Pearl", 3, 2);
-      newStylist2.Save();
-
-      newStylist1.DeleteSingleStylist();
-
-      List<Stylist> sampleList = new List<Stylist>{newStylist2};
-      List<Stylist> testList = Stylist.GetAll();
-
-      Assert.Equal(sampleList, testList);
-    }
-    [Fact]
-    public void TestStylists_Update_UpdatesStylistName()
-    {
-      Stylist testStylist = new Stylist("Levi", "Pearl", 3, 2);
       testStylist.Save();
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{testStylist};
 
-      testStylist.Update("AmyRose", "Pearl", 3);
-
-      Assert.Equal("AmyRose", testStylist.GetName());
+      //assert
+      Assert.Equal(testList, result);
     }
-  }
-}
+
+        [Fact]
+        public void TestStylists_Find_FindsStylistInDatabase()
+        {
+          //arrange
+          Stylist newStylist = new Stylist("AmyRose", "Pearl", 3, 2);
+          newStylist.Save();
+
+          //Act
+          Stylist foundStylist = Stylist.Find(newStylist.GetId());
+
+          //assert
+          Assert.Equal(newStylist, foundStylist);
+        }
+        [Fact]
+        public void TestStylist_SearchByName_ReturnsMatches()
+        {
+          Stylist stylist1 = new Stylist("AmyRose", "Pearl", 3, 2);
+          stylist1.Save();
+          Stylist stylist2 = new Stylist("Amy", "Pearl", 3, 2);
+          stylist2.Save();
+          Stylist stylist3 = new Stylist("AmyRose", "Pearl", 3, 2);
+          stylist3.Save();
+
+          List<Stylist> testList = new List<Stylist>{stylist1, stylist3};
+          List<Stylist> testmatches = Stylist.SearchByName("AmyRose");
+
+          Assert.Equal(testList, testmatches);
+        }
+        [Fact]
+        public void TestStylistDelete_DeletesSingleStylist()
+        {
+          Stylist newStylist1 = new Stylist("AmyRose", "Pearl", 3, 2);
+          newStylist1.Save();
+          Stylist newStylist2 = new Stylist("Anthony", "Pearl", 3, 2);
+          newStylist2.Save();
+
+          newStylist1.DeleteSingleStylist();
+
+          List<Stylist> sampleList = new List<Stylist>{newStylist2};
+          List<Stylist> testList = Stylist.GetAll();
+
+          Assert.Equal(sampleList, testList);
+        }
+        [Fact]
+        public void TestStylists_Update_UpdatesStylistName()
+        {
+          Stylist testStylist = new Stylist("Anthony", "Pearl", 3, 2);
+          testStylist.Save();
+
+          testStylist.Update("AmyRose", "Hawthorne", 2);
+
+          Assert.Equal("AmyRose", testStylist.GetName());
+        }
+      }
+    }

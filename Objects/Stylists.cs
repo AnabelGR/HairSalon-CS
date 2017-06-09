@@ -14,10 +14,10 @@ namespace HairSalon.Objects
 
     public Stylist(string name, string location, int specialtyId, int id = 0)
     {
+      _id = id;
       _name = name;
       _location = location;
       _specialty_id = specialtyId;
-      _id = id;
     }
 
     public int GetId()
@@ -64,7 +64,9 @@ namespace HairSalon.Objects
         Stylist newStylist = (Stylist) otherStylist;
         bool idEquality = this.GetId() == newStylist.GetId();
         bool nameEquality = this.GetName() == newStylist.GetName();
-        return (idEquality && nameEquality);
+        bool locationEquality = this.GetLocation() == newStylist.GetLocation();
+        bool specialtyIdEquality = this.GetSpecialtyId() == newStylist.GetSpecialtyId();
+        return (idEquality && nameEquality && locationEquality && specialtyIdEquality);
       }
     }
     public static List<Stylist> GetAll()
@@ -81,7 +83,7 @@ namespace HairSalon.Objects
         string name = rdr.GetString(1);
         string location = rdr.GetString(2);
         int specialtyId = rdr.GetInt32(3);
-        Stylist newStylist = new Stylist(name, location, specialtyId);
+        Stylist newStylist = new Stylist(name, location, specialtyId, id);
         allStylists.Add(newStylist);
       }
       if (rdr != null)
@@ -118,11 +120,9 @@ namespace HairSalon.Objects
       SqlParameter nameParam = new SqlParameter("@StylistName", this.GetName());
       SqlParameter locationParam = new SqlParameter("@StylistLocation", this.GetLocation());
       SqlParameter specialtyIdParam = new SqlParameter("@StylistSpecialtyId", this.GetSpecialtyId());
-
       cmd.Parameters.Add(nameParam);
       cmd.Parameters.Add(locationParam);
       cmd.Parameters.Add(specialtyIdParam);
-
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
@@ -144,7 +144,7 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @StylistId;", conn);
       SqlParameter idParam = new SqlParameter("@StylistId", idToFind);
       cmd.Parameters.Add(idParam);
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -178,8 +178,7 @@ namespace HairSalon.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-
-      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE name = @SearchName;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE name = @SearchName;", conn);
       SqlParameter searchParam = new SqlParameter("@SearchName", nameToSearch);
       cmd.Parameters.Add(searchParam);
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -210,9 +209,7 @@ namespace HairSalon.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-
-      SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @StylistId;", conn);
-
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists WHERE id = @StylistId;", conn);
       SqlParameter idParam = new SqlParameter("@StylistId", this.GetId());
       cmd.Parameters.Add(idParam);
       cmd.ExecuteNonQuery();
@@ -227,7 +224,7 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @StylistName, location = @StylistLocation OUTPUT INSERTED.name, INSERTED.location WHERE id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @StylistName, location = @StylistLocation, specialty_id = @SpecialtyId OUTPUT INSERTED.name, INSERTED.location, INSERTED.specialty_id WHERE id = @StylistId;", conn);
 
       SqlParameter nameParam = new SqlParameter("@StylistName", name);
       SqlParameter locationParam = new SqlParameter("@StylistLocation", location);
@@ -238,7 +235,6 @@ namespace HairSalon.Objects
       cmd.Parameters.Add(locationParam);
       cmd.Parameters.Add(specialtyIdParam);
       cmd.Parameters.Add(idParam);
-
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
