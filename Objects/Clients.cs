@@ -1,0 +1,95 @@
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using HairSalon;
+
+namespace HairSalon.Objects
+{
+  public class Client
+  {
+    private int _id;
+    private string _name;
+
+    public Client(string name, int id = 0)
+    {
+      _name = name;
+      _id = id;
+    }
+
+    public int GetId()
+    {
+      return _id;
+    }
+    public void SetId(int id)
+    {
+      _id = id;
+    }
+    public string GetName()
+    {
+      return _name;
+    }
+    public void SetName(string name)
+    {
+      _name = name;
+    }
+
+
+    public override bool Equals(System.Object otherClient)
+    {
+      if (!(otherClient is Client))
+      {
+        return false;
+      }
+      else
+      {
+        Client newClient = (Client) otherClient;
+
+        bool idEquality = this.GetId() == newClient.GetId();
+        bool nameEquality = this.GetName() == newClient.GetName();
+
+        return (idEquality && nameEquality);
+      }
+    }
+    public static List<Client> GetAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Client> allClients = new List<Client>{};
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+
+        Client newClient = new Client(name, id);
+        allClients.Add(newClient);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return allClients;
+    }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients;", conn);
+
+      cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+  }
+}

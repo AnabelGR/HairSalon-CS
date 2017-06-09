@@ -29,10 +29,10 @@ Must have current version of .Net and Mono installed. Will require database file
 Copy all files and folders to your desktop or {git clone} the project using this link https://github.com/AnabelGR/HairSalon-CS.git.
 
 To recreate the databases using SQLCMD in powershell on a windows operating system type:
-* > CREATE DATABASE salon; > GO > USE salon; > GO > CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT); > CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), location VARCHAR(255), speciality_id INT); > CREATE TABLE specialties (id INT IDENTITY(1,1), name VARCHAR(255)); > CREATE TABLE appointments (id INT IDENTITY(1,1), client_id INT, stylist_id INT); > GO.
+* > CREATE DATABASE hair_salon; > GO > USE hair_salon; > GO > CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT); > CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), location VARCHAR(255), speciality_id INT); > CREATE TABLE specialties (id INT IDENTITY(1,1), name VARCHAR(255)); > CREATE TABLE appointments (id INT IDENTITY(1,1), client_id INT, stylist_id INT); > GO.
 
 Navigate to the folder in your Windows powershell and run {dnu restore} to compile the file then run {dnx kestrel} to start the web server. In your web browser address bar, navigate to {//localhost:5004} to get to the home page.
-```
+
 ## Known Bugs
 
 * No known bugs
