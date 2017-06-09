@@ -8,19 +8,19 @@ using HairSalon.Objects;
 namespace HairSalon
 {
   [Collection("HairSalon")]
-  public class OwnerTest
+  public class EmployeeTest
   {
     [Fact]
     public void TestCheckPasswordFunction_ReturnFalse()
     {
-      Owner newOwner = new Owner("Jun Fritz", "password");
-      Assert.Equal(false, newOwner.CheckPassword());
+      Employee newEmployee = new Employee("Jun Fritz", "password");
+      Assert.Equal(false, newEmployee.CheckPassword());
     }
     [Fact]
     public void TestCheckPasswordFunction_ReturnTrue()
     {
-      Owner newOwner = new Owner("admin", "pa55w0rd");
-      Assert.Equal(true, newOwner.CheckPassword());
+      Employee newEmployee = new Employee("admin", "pa55w0rd");
+      Assert.Equal(true, newEmployee.CheckPassword());
     }
   }
 }
