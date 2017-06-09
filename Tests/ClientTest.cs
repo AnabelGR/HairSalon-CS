@@ -31,5 +31,16 @@ namespace HairSalon
     {
       Client.DeleteAll();
     }
+
+    [Fact]
+    public void TestClients_Equal_ReturnEqualValues()
+    {
+      //Arrange
+      Client newClient = new Client("Amber");
+      Client testClient = new Client("Amber");
+
+      //Act, Assert
+      Assert.Equal(newClient, testClient);
+    }
   }
 }

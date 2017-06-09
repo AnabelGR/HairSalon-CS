@@ -33,7 +33,6 @@ namespace HairSalon.Objects
       _name = name;
     }
 
-
     public override bool Equals(System.Object otherClient)
     {
       if (!(otherClient is Client))
@@ -86,6 +85,32 @@ namespace HairSalon.Objects
       SqlCommand cmd = new SqlCommand("DELETE FROM clients;", conn);
 
       cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name) OUTPUT INSERTED.id VALUES (@ClientName);", conn);
+
+      SqlParameter nameParam = new SqlParameter("@ClientName", this.GetName());
+
+      cmd.Parameters.Add(nameParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
       if(conn != null)
       {
         conn.Close();
