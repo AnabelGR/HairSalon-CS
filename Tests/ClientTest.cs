@@ -80,10 +80,25 @@ namespace HairSalon
       Client client3 = new Client("ann");
       client3.Save();
 
-      List<Client> controlList = new List<Client>{client1, client3};
-      List<Client> matches = Client.SearchByName("Ann");
+      List<Client> testList = new List<Client>{client1, client3};
+      List<Client> testmatches = Client.SearchByName("Ann");
 
-      Assert.Equal(controlList, matches);
+      Assert.Equal(testList, testmatches);
+    }
+    [Fact]
+    public void TestClientDelete_DeletesSingleClient()
+    {
+      Client newClient1 = new Client("Amber");
+      newClient1.Save();
+      Client newClient2 = new Client("Anna");
+      newClient2.Save();
+
+      newClient1.DeleteSingleClient();
+
+      List<Client> sampleList = new List<Client>{newClient2};
+      List<Client> testList = Client.GetAll();
+
+      Assert.Equal(sampleList, testList);
     }
   }
 }
