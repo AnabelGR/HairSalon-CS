@@ -17,7 +17,7 @@
     {
       <div class="panel-heading" style="background-color:#41738E !important">
         <h4 class="panel-title">
-          <p id="@stylist.GetId()"class="stylist">@stylist.GetType()</p>
+          <p id="@stylist.GetId()"class="stylist">@stylist.GetName()</p>
         </h4>
       </div>
     }
@@ -25,7 +25,7 @@
     {
       <div class="panel-heading" style="background-color:#449E6E !important">
         <h4 class="panel-title">
-          <p id="@stylist.GetId()"class="stylist">@stylist.GetType()</p>
+          <p id="@stylist.GetId()"class="stylist">@stylist.GetName()</p>
         </h4>
       </div>
     }
@@ -33,7 +33,7 @@
     {
       <div class="panel-heading" style="background-color:#41738E !important">
         <h4 class="panel-title">
-          <p id="@stylist.GetId()"class="stylist">@stylist.GetType()</p>
+          <p id="@stylist.GetId()"class="stylist">@stylist.GetName()</p>
         </h4>
       </div>
     }
@@ -41,56 +41,8 @@
     {
       <div class="panel-heading" style="background-color:#449E6E !important">
         <h4 class="panel-title">
-          <p id="@stylist.GetId()"class="stylist">@stylist.GetType()</p>
+          <p id="@stylist.GetId()"class="stylist">@stylist.GetName()</p>
         </h4>
       </div>
     }
-
-
-  @foreach (var client in @Model["clients"])
-  {
-    if(client.GetStylistId() == stylist.GetId())
-    {
-      if(client.GetStylistId() == 1)
-      {
-        <div class="panel-body client-@stylist.GetId()" style="background-color:#9BBCCE !important; border-bottom: 1px solid black">
-          <a href="client/@client.GetId()">@client.GetName()</a>
-        </div>
-      }
-      else if (client.GetStylistId() == 2)
-      {
-        <div class="panel-body client-@stylist.GetId()" style="background-color:#A0D7BA !important; border-bottom: 1px solid black">
-          <a href="client/@client.GetId()">@client.GetName()</a>
-        </div>
-      }
-      else if (client.GetStylistId() == 3)
-      {
-        <div class="panel-body client-@stylist.GetId()" style="background-color:#9BBCCE !important; border-bottom: 1px solid black">
-          <a href="client/@client.GetId()">@client.GetName()</a>
-        </div>
-      }
-      else if (client.GetStylistId() == 4)
-      {
-        <div class="panel-body client-@stylist.GetId()" style="background-color:#A0D7BA !important; border-bottom: 1px solid black">
-          <a href="client/@client.GetId()">@client.GetName()</a>
-        </div>
-      }
-
-
-    }
   }
-  }
-
-  </div>
-  <div class="panel-footer">
-    <p>Don't see your client? <a href="#anchor" class="showForm">Submit yours.</a></p></div>
-</div>
-<a name="anchor"><div class="hideThis"></a>
-  <form action="/client/new" method="post">
-  <label for="user-name"></label>
-  <input id="user-name" name="user-name" type="text" placeholder="Owner Login">
-  <label for="user-password"></label>
-  <input id="user-password" name="user-password" type="text" placeholder="Password">
-  <button type="submit">Submit</button>
-</form>
-</div>

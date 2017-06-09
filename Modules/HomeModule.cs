@@ -10,7 +10,12 @@ namespace HairSalon
   {
     public HomeModule()
     {
-      Get["/"] = _ => "hello world";
-    }
+      Get["/"] = _ => {
+        List<Stylist> allStylists = Stylist.GetAll();
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        model.Add("stylists", allStylists);
+        return View["index.cshtml", model];
+    };
   }
+}
 }
