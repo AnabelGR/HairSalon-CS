@@ -42,6 +42,7 @@ namespace HairSalon
       //Act, Assert
       Assert.Equal(newClient, testClient);
     }
+
     [Fact]
     public void TestClients_Save_SavesClientToDatabase()
     {
@@ -55,6 +56,7 @@ namespace HairSalon
       //assert
       Assert.Equal(newClient, savedClient);
     }
+
     [Fact]
     public void TestClients_Find_FindsClientInDatabase()
     {
@@ -67,6 +69,21 @@ namespace HairSalon
 
       //assert
       Assert.Equal(newClient, foundClient);
+    }
+    [Fact]
+    public void TestClient_SearchByName_ReturnsMatches()
+    {
+      Client client1 = new Client("Ann");
+      client1.Save();
+      Client client2 = new Client("Anna");
+      client2.Save();
+      Client client3 = new Client("ann");
+      client3.Save();
+
+      List<Client> controlList = new List<Client>{client1, client3};
+      List<Client> matches = Client.SearchByName("Ann");
+
+      Assert.Equal(controlList, matches);
     }
   }
 }
