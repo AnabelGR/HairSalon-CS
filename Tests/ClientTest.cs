@@ -36,8 +36,8 @@ namespace HairSalon
     public void TestClients_Equal_ReturnEqualValues()
     {
       //Arrange
-      Client newClient = new Client("Amber");
-      Client testClient = new Client("Amber");
+      Client newClient = new Client("Amber", 1);
+      Client testClient = new Client("Amber", 1);
 
       //Act, Assert
       Assert.Equal(newClient, testClient);
@@ -47,7 +47,7 @@ namespace HairSalon
     public void TestClients_Save_SavesClientToDatabase()
     {
       //arrange
-      Client newClient = new Client("Amber");
+      Client newClient = new Client("Amber", 1);
       newClient.Save();
 
       //Act
@@ -61,7 +61,7 @@ namespace HairSalon
     public void TestClients_Find_FindsClientInDatabase()
     {
       //arrange
-      Client newClient = new Client("Amber");
+      Client newClient = new Client("Amber", 1);
       newClient.Save();
 
       //Act
@@ -73,11 +73,11 @@ namespace HairSalon
     [Fact]
     public void TestClient_SearchByName_ReturnsMatches()
     {
-      Client client1 = new Client("Ann");
+      Client client1 = new Client("Ann", 1);
       client1.Save();
-      Client client2 = new Client("Anna");
+      Client client2 = new Client("Anna", 1);
       client2.Save();
-      Client client3 = new Client("ann");
+      Client client3 = new Client("ann", 1);
       client3.Save();
 
       List<Client> testList = new List<Client>{client1, client3};
@@ -88,9 +88,9 @@ namespace HairSalon
     [Fact]
     public void TestClientDelete_DeletesSingleClient()
     {
-      Client newClient1 = new Client("Amber");
+      Client newClient1 = new Client("Amber", 1);
       newClient1.Save();
-      Client newClient2 = new Client("Anna");
+      Client newClient2 = new Client("Anna", 1);
       newClient2.Save();
 
       newClient1.DeleteSingleClient();
@@ -103,10 +103,10 @@ namespace HairSalon
     [Fact]
     public void TestClients_Update_UpdatesClientName()
     {
-      Client testClient = new Client("Anthony");
+      Client testClient = new Client("Anthony", 1);
       testClient.Save();
 
-      testClient.Update("Amber");
+      testClient.Update("Amber", 1);
 
       Assert.Equal("Amber", testClient.GetName());
     }

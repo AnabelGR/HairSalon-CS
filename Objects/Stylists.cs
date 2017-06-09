@@ -67,10 +67,10 @@ namespace HairSalon.Objects
       List<Client> allClients = new List<Client>{};
       while(rdr.Read())
       {
-        int id = rdr.GetInt32(0);
-        string name = rdr.GetString(1);
-        int stylistId = rdr.GetInt32(2);
-        Client newClient = new Client(name, stylistId);
+        int ClientId = rdr.GetInt32(0);
+        string ClientName = rdr.GetString(1);
+        int ClientStylistId = rdr.GetInt32(2);
+        Client newClient = new Client(ClientName, ClientStylistId, ClientId);
         allClients.Add(newClient);
       }
       if(rdr != null)
@@ -83,7 +83,7 @@ namespace HairSalon.Objects
       }
       return allClients;
     }
-    
+
     public override bool Equals(System.Object otherStylist)
     {
       if (!(otherStylist is Stylist))
