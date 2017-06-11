@@ -2,13 +2,6 @@ body {
   font-family: 'Dosis', sans-serif;
 }
 
-.panel-body{
-  display: none;
-}
-.hideThis {
-  display: none;
-}
-
 .panel-heading {
   text-align: center;
 }
