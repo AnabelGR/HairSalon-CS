@@ -87,14 +87,14 @@ namespace HairSalon
       Assert.Equal(testList, testmatches);
     }
     [Fact]
-    public void TestStylistDelete_DeletesSingleStylist()
+    public void TestStylistDelete_Delete()
     {
       Stylist newStylist1 = new Stylist("AmyRose", "Pearl", 3, 2);
       newStylist1.Save();
       Stylist newStylist2 = new Stylist("Anthony", "Pearl", 3, 2);
       newStylist2.Save();
 
-      newStylist1.DeleteSingleStylist();
+      newStylist1.Delete();
 
       List<Stylist> sampleList = new List<Stylist>{newStylist2};
       List<Stylist> testList = Stylist.GetAll();

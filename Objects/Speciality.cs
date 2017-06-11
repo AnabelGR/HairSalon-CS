@@ -164,7 +164,7 @@ namespace HairSalon.Objects
       }
       return matches;
     }
-    public void DeleteSingleSpecialty()
+    public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();

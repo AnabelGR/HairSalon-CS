@@ -5,3 +5,44 @@ body {
 .panel-heading {
   text-align: center;
 }
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  background-color: #E00000;
+  color: white;
+  text-align: center;
+  width: 60px;
+  font-variant-caps: all-small-caps;
+  padding: 2px;
+}
+
+.stylistNames {
+  color: #8B0000;
+  font-weight: 900;
+}
+
+.btn-wide {
+  width: 100px;
+  text-align: center;
+}
+
+.jumbotron {
+  background-color: #8B0000 !important;
+  color: white !important;
+}
+
+small{
+  color: #FF5252 !important;
+}
+
+.center {
+  text-align: center;
+}
+
+label {
+  text-align: right;
+  font-size: 16px;
+  }

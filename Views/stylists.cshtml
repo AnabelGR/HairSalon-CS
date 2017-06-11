@@ -1,0 +1,21 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h2>Stylists:</h2>
+<ul>
+  @if (Model.Count != 0)
+  {
+    @foreach (var stylist in Model)
+    {
+      <a href="/stylists/@stylist.GetId()"><h4 class="stylistNames">@stylist.GetName()</h4>
+      <p>Located at our @stylist.GetLocation() location</p></a>
+      <p><a href="/stylist/edit/@stylist.GetId()" class="btn">Edit</a>  <a href="/stylist/delete/@stylist.GetId()" class="btn">Delete</a></p>
+    }
+  }
+</ul>
+
+<h4><a href="/stylists/new" class="btn btn-wide">Add a new stylist</a></h4>
+<form action="/stylists/clear" method="post">
+  <button type="submit" class="btn btn-wide">Clear all stylists</button>
+</form>
+<h4><a href="/" class="btn">Home</a></h4>

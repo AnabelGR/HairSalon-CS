@@ -86,14 +86,14 @@ namespace HairSalon
       Assert.Equal(testList, testmatches);
     }
     [Fact]
-    public void TestSpecialtyDelete_DeletesSingleSpecialty()
+    public void TestSpecialtyDelete_Delete()
     {
       Specialty newSpecialty1 = new Specialty("color");
       newSpecialty1.Save();
       Specialty newSpecialty2 = new Specialty("Anna");
       newSpecialty2.Save();
 
-      newSpecialty1.DeleteSingleSpecialty();
+      newSpecialty1.Delete();
 
       List<Specialty> sampleList = new List<Specialty>{newSpecialty2};
       List<Specialty> testList = Specialty.GetAll();
@@ -101,7 +101,7 @@ namespace HairSalon
       Assert.Equal(sampleList, testList);
     }
     [Fact]
-    public void TestSpecialty_Update_UpdatesSpecialtyName()
+    public void TestSpecialty_Update_Update()
     {
       Specialty testSpecialty = new Specialty("Anthony");
       testSpecialty.Save();

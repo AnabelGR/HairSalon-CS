@@ -84,7 +84,7 @@ namespace HairSalon.Objects
       }
       return allClients;
     }
-    
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
@@ -182,7 +182,7 @@ namespace HairSalon.Objects
       }
       return matches;
     }
-    public void DeleteSingleClient()
+    public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
