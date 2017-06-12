@@ -25,7 +25,6 @@ This web application will allow a salon to book clients with a stylist.
 |Link a stylist to a client. |stylist: AmyRose, client: Amber|A one to one database relationship. |
 |Link a stylist to several clients. |stylist: AmyRose, clients: Amber, Anthony|A one to many database relationship. |
 |Link a stylist to a specialty. |stylist: AmyRose, specialty: color|A one to one database relationship. |
-|Book a client with a stylist at a salon. |client: Amber, stylist: AmyRose|A many to many database relationship.|
 
 ## Setup/Installation Requirements
 
@@ -40,7 +39,7 @@ Navigate to the folder in your Windows powershell and run {dnu restore} to compi
 
 ## Known Bugs
 
-* No known bugs
+* Having homemodule.cs routing issues.
 
 ## Support and contact details
 

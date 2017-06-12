@@ -2,8 +2,8 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<h2>Add client:</h2>
-<form class="form-horizontal" id="client" action="/client/new" method="post">
+<h2>Edit client: @Model.GetName()</h2>
+<form class="form-horizontal" id="client" action="/client/edit/Model.GetId()" method="post">
   <div class="form-group">
     <label class="col-md-3" for="name">Client Name:</label>
     <div class="col-md-3">
@@ -11,9 +11,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-md-3" for="stylist-id">Stylist:</label>
+    <label class="col-md-3" for="specialty-id">Stylist:</label>
     <div class="col-md-3">
-      <select class="form-control" name="stylist-id">
+      <select class="form-control" name="specialty-id">
         @foreach (var stylist in Model)
         {
           <option value="@stylist.GetId()">@stylist.GetName()</option>
@@ -21,6 +21,6 @@
       </select>
     </div>
   </div>
-  <p><button class="btn" type="submit">Add</button></p>
+  <p><button class="btn" type="submit">Edit</button></p>
 </form>
 <p><a href="/" class="btn">Home</a></p>
