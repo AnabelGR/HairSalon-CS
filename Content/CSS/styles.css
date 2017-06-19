@@ -11,7 +11,7 @@ a {
 }
 
 .btn {
-  background-color: #E00000;
+  background-color: black;
   color: white;
   text-align: center;
   width: 60px;
@@ -20,22 +20,12 @@ a {
 }
 
 .stylistNames {
-  color: #8B0000;
   font-weight: 900;
 }
 
 .btn-wide {
   width: 100px;
   text-align: center;
-}
-
-.jumbotron {
-  background-color: #8B0000 !important;
-  color: white !important;
-}
-
-small{
-  color: #FF5252 !important;
 }
 
 .center {
