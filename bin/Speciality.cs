@@ -89,7 +89,7 @@ namespace HairSalon.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("INSERT INTO specialty (name) OUTPUT INSERTED.id VALUES (@SpecialtyName);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO specialties (name) OUTPUT INSERTED.id VALUES (@SpecialtyName);", conn);
       SqlParameter nameParameter = new SqlParameter("@SpecialtyName", this.GetName());
       cmd.Parameters.Add(nameParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -112,7 +112,7 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM specialty WHERE id = @SpecialtyId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM specialties WHERE id = @SpecialtyId;", conn);
       SqlParameter idParameter = new SqlParameter("@SpecialtyId", idToFind);
       cmd.Parameters.Add(idParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -140,7 +140,7 @@ namespace HairSalon.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("SELECT * FROM specialty WHERE name = @SearchName;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM specialties WHERE name = @SearchName;", conn);
       SqlParameter searchParameter = new SqlParameter("@SearchName", nameToSearch);
       cmd.Parameters.Add(searchParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -168,7 +168,7 @@ namespace HairSalon.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM specialty WHERE id = @SpecialtyId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM specialties WHERE id = @SpecialtyId;", conn);
       SqlParameter idParameter = new SqlParameter("@SpecialtyId", this.GetId());
       cmd.Parameters.Add(idParameter);
       cmd.ExecuteNonQuery();
@@ -181,7 +181,7 @@ namespace HairSalon.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("UPDATE specialty SET name = @SpecialtyName OUTPUT INSERTED.name WHERE id = @SpecialtyId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE specialties SET name = @SpecialtyName OUTPUT INSERTED.name WHERE id = @SpecialtyId;", conn);
       SqlParameter nameParameter = new SqlParameter("@SpecialtyName", newName);
       SqlParameter idParameter = new SqlParameter("@SpecialtyId", this.GetId());
       cmd.Parameters.Add(nameParameter);

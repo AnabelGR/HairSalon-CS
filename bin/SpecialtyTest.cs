@@ -27,10 +27,6 @@ namespace HairSalon
       //Assert
       Assert.Equal(allSpecialtys, testList);
     }
-    public void Dispose()
-    {
-      Specialty.DeleteAll();
-    }
 
     [Fact]
     public void TestSpecialty_Equal_ReturnEqualValues()
@@ -109,6 +105,12 @@ namespace HairSalon
       testSpecialty.Update("color");
 
       Assert.Equal("color", testSpecialty.GetName());
+    }
+    public void Dispose()
+    {
+      Client.DeleteAll();
+      Stylist.DeleteAll();
+      Specialty.DeleteAll();
     }
   }
 }

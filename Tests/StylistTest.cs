@@ -27,10 +27,6 @@ namespace HairSalon
       //Assert
       Assert.Equal(allStylists, testList);
     }
-    public void Dispose()
-    {
-      Stylist.DeleteAll();
-    }
 
     [Fact]
     public void TestStylists_Equal_ReturnEqualValues()
@@ -128,6 +124,11 @@ namespace HairSalon
       List<Client> resultList = testStylist.GetClients();
 
       Assert.Equal(testList, resultList);
+    }
+    public void Dispose()
+    {
+      Client.DeleteAll();
+      Stylist.DeleteAll();
     }
   }
 }

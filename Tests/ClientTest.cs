@@ -27,10 +27,6 @@ namespace HairSalon
       //Assert
       Assert.Equal(allClients, testList);
     }
-    public void Dispose()
-    {
-      Client.DeleteAll();
-    }
 
     [Fact]
     public void TestClients_Equal_ReturnEqualValues()
@@ -110,6 +106,11 @@ namespace HairSalon
       testClient.Update("Amber", 1);
 
       Assert.Equal("Amber", testClient.GetName());
+    }
+    public void Dispose()
+    {
+      Client.DeleteAll();
+      Stylist.DeleteAll();
     }
   }
 }
