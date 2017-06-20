@@ -136,16 +136,16 @@ namespace HairSalon.Objects
 
       SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, location) OUTPUT INSERTED.id VALUES (@StylistName, @StylistLocation);", conn);
 
-      SqlParameter nameParameter = new SqlParameter();
-      nameParameter.ParameterName ="@Name";
-      nameParameter.Value = this.GetName();
+      SqlParameter stylistNameParameter = new SqlParameter();
+      stylistNameParameter.ParameterName ="@StylistName";
+      stylistNameParameter.Value = this.GetName();
 
-      SqlParameter locationParameter = new SqlParameter();
-      locationParameter.ParameterName = "@StylistLocation";
-      locationParameter.Value = this.GetLocation();
+      SqlParameter stylistLocationParameter = new SqlParameter();
+      stylistLocationParameter.ParameterName = "@StylistLocation";
+      stylistLocationParameter.Value = this.GetLocation();
 
-      cmd.Parameters.Add(nameParameter);
-      cmd.Parameters.Add(locationParameter);
+      cmd.Parameters.Add(stylistNameParameter);
+      cmd.Parameters.Add(stylistLocationParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -250,10 +250,10 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @StylistName, location = @StylistLocation,  OUTPUT INSERTED.name, INSERTED.location WHERE id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @StylistName, location = @StylistLocation  OUTPUT INSERTED.name, INSERTED.location WHERE id = @StylistId;", conn);
 
       SqlParameter newNameParameter = new SqlParameter();
-      newNameParameter.ParameterName = "@NewName";
+      newNameParameter.ParameterName = "@StylistName";
       newNameParameter.Value = newName;
       cmd.Parameters.Add(newNameParameter);
 
@@ -261,6 +261,11 @@ namespace HairSalon.Objects
       newLocationParameter.ParameterName = "@StylistLocation";
       newLocationParameter.Value = newLocation;
       cmd.Parameters.Add(newLocationParameter);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(stylistIdParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
       while(rdr.Read())
