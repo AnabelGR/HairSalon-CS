@@ -3,7 +3,7 @@
 }
 
 <h2>Edit stylist: @Model.GetName()</h2>
-<form class="form-horizontal" id="stylist" action="/stylist/edit/Model.GetId()" method="post">
+<form class="form-horizontal" id="stylist" action="/stylist/edit/@Model.GetId()" method="post">
   <div class="form-group">
     <label class="col-md-3" for="name">Stylist Name:</label>
     <div class="col-md-3">
@@ -17,6 +17,4 @@
     </div>
   </div>
   <p><button class="btn" type="submit">Edit</button></p>
-</div>
 </form>
-<p><a href="/" class="btn">Home</a></p>
