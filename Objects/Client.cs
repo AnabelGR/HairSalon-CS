@@ -201,7 +201,7 @@ namespace HairSalon.Objects
       conn.Open();
       SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
       SqlParameter ClientIdParameter = new SqlParameter();
-      ClientIdParameter.ParameterName ="@ClientStylistId";
+      ClientIdParameter.ParameterName ="@ClientId";
       ClientIdParameter.Value = this.GetId();
 
       cmd.Parameters.Add(ClientIdParameter);
@@ -211,23 +211,27 @@ namespace HairSalon.Objects
         conn.Close();
       }
     }
-    public void Update(string newName, int newStylistId)
+    public void Update(string newName, int newClientStylistId)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @ClientName, stylist_id = @ClientStylistId OUTPUT INSERTED.name, INSERTED.stylist_id WHERE id = @ClientId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @NewName, stylist_id = @NewClientStylistId OUTPUT INSERTED.name, INSERTED.stylist_id WHERE id = @ClientId;", conn);
 
       SqlParameter newNameParameter = new SqlParameter();
       newNameParameter.ParameterName = "@NewName";
       newNameParameter.Value = newName;
-
-      SqlParameter newStylistIdParameter = new SqlParameter();
-      newStylistIdParameter.ParameterName = "@NewStylistId";
-      newStylistIdParameter.Value = newStylistId;
-
       cmd.Parameters.Add(newNameParameter);
-      cmd.Parameters.Add(newStylistIdParameter);
+
+      SqlParameter newClientStylistIdParameter = new SqlParameter();
+      newClientStylistIdParameter.ParameterName = "@NewClientStylistId";
+      newClientStylistIdParameter.Value = newClientStylistId;
+      cmd.Parameters.Add(newClientStylistIdParameter);
+
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@ClientId";
+      clientIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(clientIdParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
       while(rdr.Read())

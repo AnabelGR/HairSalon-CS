@@ -66,47 +66,47 @@ namespace HairSalon
       //assert
       Assert.Equal(newClient, foundClient);
     }
-    // [Fact]
-    // public void TestClient_SearchByName_ReturnsMatches()
-    // {
-    //   Client client1 = new Client("Ann", 1);
-    //   client1.Save();
-    //   Client client2 = new Client("Anna", 1);
-    //   client2.Save();
-    //   Client client3 = new Client("ann", 1);
-    //   client3.Save();
-    //
-    //   List<Client> testList = new List<Client>{client1, client3};
-    //   List<Client> testmatches = Client.SearchByName("Ann");
-    //
-    //   Assert.Equal(testList, testmatches);
-    // }
-    // [Fact]
-    // public void TestClientDelete_Delete()
-    // {
-    //   Client newClient1 = new Client("Amber", 1);
-    //   newClient1.Save();
-    //   Client newClient2 = new Client("Anna", 1);
-    //   newClient2.Save();
-    //
-    //   newClient1.Delete();
-    //
-    //   List<Client> sampleList = new List<Client>{newClient2};
-    //   List<Client> testList = Client.GetAll();
-    //
-    //   Assert.Equal(sampleList, testList);
-    // }
-    //
-    // [Fact]
-    // public void TestClients_Update_UpdatesClientName()
-    // {
-    //   Client testClient = new Client("Anthony", 1);
-    //   testClient.Save();
-    //
-    //   testClient.Update("Amber", 1);
-    //
-    //   Assert.Equal("Amber", testClient.GetName());
-    // }
+    [Fact]
+    public void TestClient_SearchByName_ReturnsMatches()
+    {
+      Client client1 = new Client("Ann", 1);
+      client1.Save();
+      Client client2 = new Client("Anna", 1);
+      client2.Save();
+      Client client3 = new Client("ann", 1);
+      client3.Save();
+
+      List<Client> testList = new List<Client>{client1, client3};
+      List<Client> testmatches = Client.SearchByName("Ann");
+
+      Assert.Equal(testList, testmatches);
+    }
+    [Fact]
+    public void TestClientDelete_Delete()
+    {
+      Client newClient1 = new Client("Amber", 1);
+      newClient1.Save();
+      Client newClient2 = new Client("Anna", 1);
+      newClient2.Save();
+
+      newClient1.Delete();
+
+      List<Client> sampleList = new List<Client>{newClient2};
+      List<Client> testList = Client.GetAll();
+
+      Assert.Equal(sampleList, testList);
+    }
+
+    [Fact]
+    public void TestClients_Update_UpdatesClientName()
+    {
+      Client testClient = new Client("Anthony", 1);
+      testClient.Save();
+
+      testClient.Update("Amber", 1);
+
+      Assert.Equal("Amber", testClient.GetName());
+    }
     public void Dispose()
     {
       Client.DeleteAll();
