@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Nancy;
 using Nancy.ViewEngines.Razor;
@@ -26,7 +25,7 @@ namespace HairSalon
         return View["stylists_form.cshtml"];
       };
       Post["/stylists/new"] = _ => {
-        Stylist newStylist = new Stylist(Request.Form["name"], Request.Form["location"], Request.Form["specialty-id"]);
+        Stylist newStylist = new Stylist(Request.Form["name"], Request.Form["location"]);
         newStylist.Save();
         return View["index.cshtml"];
       };
