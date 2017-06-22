@@ -18,6 +18,22 @@ namespace HairSalon.Objects
       _location = location;
     }
 
+    public override bool Equals(System.Object otherStylist)
+    {
+      if (!(otherStylist is Stylist))
+      {
+        return false;
+      }
+      else
+      {
+        Stylist newStylist = (Stylist) otherStylist;
+        bool idEquality = this.GetId() == newStylist.GetId();
+        bool nameEquality = this.GetName() == newStylist.GetName();
+        bool locationEquality = this.GetLocation() == newStylist.GetLocation();
+        return (idEquality && nameEquality && locationEquality);
+      }
+    }
+
     public int GetId()
     {
       return _id;
@@ -42,6 +58,16 @@ namespace HairSalon.Objects
     {
       _location = location;
     }
+
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
+
     public List<Client> GetClients()
     {
       SqlConnection conn = DB.Connection();
@@ -51,17 +77,18 @@ namespace HairSalon.Objects
       SqlParameter stylistIdParameter = new SqlParameter();
       stylistIdParameter.ParameterName = "@StylistId";
       stylistIdParameter.Value = this.GetId();
+
       cmd.Parameters.Add(stylistIdParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Client> allClients = new List<Client>{};
+      List<Client> clients = new List<Client> {};
       while(rdr.Read())
       {
-        int ClientId = rdr.GetInt32(0);
-        string ClientName = rdr.GetString(1);
-        int ClientStylistId = rdr.GetInt32(2);
-        Client newClient = new Client(ClientName, ClientStylistId, ClientId);
-        allClients.Add(newClient);
+        int clientId = rdr.GetInt32(0);
+        string clientName = rdr.GetString(1);
+        int stylistId = rdr.GetInt32(2);
+        Client newClient = new Client(clientName, stylistId, clientId);
+        clients.Add(newClient);
       }
       if(rdr != null)
       {
@@ -71,24 +98,9 @@ namespace HairSalon.Objects
       {
         conn.Close();
       }
-      return allClients;
+      return clients;
     }
 
-    public override bool Equals(System.Object otherStylist)
-    {
-      if (!(otherStylist is Stylist))
-      {
-        return false;
-      }
-      else
-      {
-        Stylist newStylist = (Stylist) otherStylist;
-        bool idEquality = this.GetId() == newStylist.GetId();
-        bool nameEquality = this.GetName() == newStylist.GetName();
-        bool locationEquality = this.GetLocation() == newStylist.GetLocation();
-        return (idEquality && nameEquality && locationEquality);
-      }
-    }
     public static List<Stylist> GetAll()
     {
       List<Stylist> allStylists = new List<Stylist>{};
@@ -101,11 +113,11 @@ namespace HairSalon.Objects
 
       while (rdr.Read())
       {
-        int id = rdr.GetInt32(0);
-        string name = rdr.GetString(1);
-        string location = rdr.GetString(2);
+        int stylistId = rdr.GetInt32(0);
+        string stylistName = rdr.GetString(1);
+        string stylistLocation = rdr.GetString(2);
 
-        Stylist newStylist = new Stylist(name, location, id);
+        Stylist newStylist = new Stylist(stylistName, stylistLocation, stylistId);
         allStylists.Add(newStylist);
       }
       if (rdr != null)
@@ -118,15 +130,6 @@ namespace HairSalon.Objects
       }
 
       return allStylists;
-    }
-
-    public static void DeleteAll()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
-      cmd.ExecuteNonQuery();
-      conn.Close();
     }
 
     public void Save()
@@ -169,10 +172,10 @@ namespace HairSalon.Objects
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @StylistId;", conn);
-      SqlParameter StylistIdParameter = new SqlParameter();
-      StylistIdParameter.ParameterName = "@StylistId";
-      StylistIdParameter.Value = id.ToString();
-      cmd.Parameters.Add(StylistIdParameter);
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(stylistIdParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       int foundStylistId =  0;

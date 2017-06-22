@@ -3,22 +3,13 @@
 }
 
 <h2>Edit client: @Model.GetName()</h2>
-<form class="form-horizontal" id="client" action="/client/edit/Model.GetId()" method="post">
+<form class="form-horizontal" action="/clients/@Model["selectedClient"].GetId()/edit" method="post">
   <div class="form-group">
-    <label class="col-md-3" for="name">Client Name:</label>
+    <input type="hidden" name="_method" value="PATCH">
+    <input name="client-id" type="hidden" value='@Model["selectedClient"].GetId()'>
+    <label class="col-md-3" for="name">Change client name:</label>
     <div class="col-md-3">
-    <input class="form-control" name="name" type="text">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-3" for="specialty-id">Stylist:</label>
-    <div class="col-md-3">
-      <select class="form-control" name="specialty-id">
-        @foreach (var stylist in Model)
-        {
-          <option value="@stylist.GetId()">@stylist.GetName()</option>
-        }
-      </select>
+    <input class="form-control" id="name" name="name" type="text">
     </div>
   </div>
   <p><button class="btn" type="submit">Edit</button></p>
