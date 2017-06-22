@@ -1,19 +1,13 @@
 @{
   Layout="Shared/_Layout.cshtml";
 }
-
-<form action='/stylists/@Model["selectedStylist"].GetId()/edit' method="post" class="form-horizontal">
-  <div class="form-group">
+<h1>Edit Stylist: @Model.GetName()</h1>
+<form action='/stylists/edit/@Model.GetId()' method="post" >
   <input type="hidden" name="_method" value="PATCH">
-  <input name="stylist-id" type="hidden" value='@Model["selectesdStylist"].GetId()'>
+  <input name="stylist_id" type="hidden" value='@Model.GetId()'>
   <label for="name">Change Name:</label>
   <input id="name" name="name" type="text">
-  </div>
-  <div class="form-group">
-  <input type="hidden" name="_method" value="PATCH">
-  <input name="id" type="hidden" value='@Model["selectesdStylist"].GetId()'>
   <label for="location">Change Location:</label>
   <input id="location" name="location" type="text">
-  </div>
   <p><button class="btn" type="submit">Edit</button></p>
 </form>

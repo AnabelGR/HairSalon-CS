@@ -1,10 +1,8 @@
 @{
   Layout="Shared/_Layout.cshtml";
 }
-
-<h2><strong>DELETE</strong> Stylist: @Model["selectedStylist"].GetName()</h2>
-    <p>Are you sure you want to delete this stylist?</p>
-    <form action='/stylists/@Model["selectedStylist"].GetId()/delete' method="post">
-      <input type="hidden" name="_method" value="DELETE">
-      <button type="submit" class="btn">Delete</button>
-    </form>
+  <h3>Are you sure you want to delete @Model.GetName()?</h3>
+  <form action='/stylists/delete/@Model.GetId()' method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit" class="btn">Delete</button>
+  </form>

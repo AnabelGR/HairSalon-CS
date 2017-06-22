@@ -235,7 +235,9 @@ namespace HairSalon.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM stylists WHERE id = @StylistId;DELETE FROM clients WHERE id = @StylistId;", conn);
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists WHERE id = @StylistId; DELETE FROM clients WHERE stylist_id = @StylistId;", conn);
+
       SqlParameter stylistIdParameter = new SqlParameter();
       stylistIdParameter.ParameterName = "@StylistId";
       stylistIdParameter.Value = this.GetId();
@@ -253,15 +255,15 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @StylistName, location = @StylistLocation  OUTPUT INSERTED.name, INSERTED.location WHERE id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @NewName, location = @NewLocation OUTPUT INSERTED.name, INSERTED.location WHERE id = @StylistId;", conn);
 
       SqlParameter newNameParameter = new SqlParameter();
-      newNameParameter.ParameterName = "@StylistName";
+      newNameParameter.ParameterName = "@NewName";
       newNameParameter.Value = newName;
       cmd.Parameters.Add(newNameParameter);
 
       SqlParameter newLocationParameter = new SqlParameter();
-      newLocationParameter.ParameterName = "@StylistLocation";
+      newLocationParameter.ParameterName = "@NewLocation";
       newLocationParameter.Value = newLocation;
       cmd.Parameters.Add(newLocationParameter);
 

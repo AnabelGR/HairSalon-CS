@@ -67,21 +67,21 @@ namespace HairSalon
       //assert
       Assert.Equal(newStylist, foundStylist);
     }
-    // [Fact]
-    // public void TestStylist_SearchByName_ReturnsMatches()
-    // {
-    //   Stylist stylist1 = new Stylist("AmyRose", "Pearl");
-    //   stylist1.Save();
-    //   Stylist stylist2 = new Stylist("Amy", "Pearl");
-    //   stylist2.Save();
-    //   Stylist stylist3 = new Stylist("AmyRose", "Pearl");
-    //   stylist3.Save();
-    //
-    //   List<Stylist> testList = new List<Stylist>{stylist1, stylist3};
-    //   List<Stylist> testmatches = Stylist.SearchByName("AmyRose");
-    //
-    //   Assert.Equal(testList, testmatches);
-    // }
+    [Fact]
+    public void TestStylist_SearchByName_ReturnsMatches()
+    {
+      Stylist stylist1 = new Stylist("AmyRose", "Pearl");
+      stylist1.Save();
+      Stylist stylist2 = new Stylist("Amy", "Pearl");
+      stylist2.Save();
+      Stylist stylist3 = new Stylist("AmyRose", "Pearl");
+      stylist3.Save();
+
+      List<Stylist> testList = new List<Stylist>{stylist1, stylist3};
+      List<Stylist> testmatches = Stylist.SearchByName("AmyRose");
+
+      Assert.Equal(testList, testmatches);
+    }
     [Fact]
     public void TestStylistDelete_Delete()
     {

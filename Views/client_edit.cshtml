@@ -3,7 +3,7 @@
 }
 
 <h2>Edit client: @Model.GetName()</h2>
-<form class="form-horizontal" action="/clients/@Model["selectedClient"].GetId()/edit" method="post">
+<form class="form-horizontal" action="/clients/edit/@Model["selectedClient"].GetId()" method="post">
   <div class="form-group">
     <input type="hidden" name="_method" value="PATCH">
     <input name="client-id" type="hidden" value='@Model["selectedClient"].GetId()'>
